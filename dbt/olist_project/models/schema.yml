@@ -1,0 +1,14 @@
+sources:
+  - name: staging               
+    database: olist-etl-pipeline     
+    schema: staging           
+    tables:
+      - name: customers
+      - name: olist_products
+      - name: olist_sellers
+      - name: geolocation
+      - name: olist_orders
+      - name: order_items
+      - name: order_payments
+      - name: olist_order_reviews_dataset
+      - name: category_names

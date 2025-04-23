@@ -1,0 +1,11 @@
+# packages.yml
+
+packages:
+  - package: dbt-labs/dbt_utils
+    # Check dbt Hub (hub.getdbt.com) for the latest compatible version
+    # Example version range, adjust as needed:
+    version: "1.3.0"
+
+  # Optional: Add dbt-expectations for more tests
+  - package: metaplane/dbt_expectations
+    version: [">=0.10.1", "<0.11.0"] # Check dbt Hub for latest version

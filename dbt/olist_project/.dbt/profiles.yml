@@ -1,0 +1,14 @@
+olist_project:
+  outputs:
+    dev:
+      dataset: staging
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: C:\Users\Moustapha\.dbt\dbt-key.json
+      location: europe-west10
+      method: service-account
+      priority: interactive
+      project: olist-etl-pipeline
+      threads: 10
+      type: bigquery
+  target: dev

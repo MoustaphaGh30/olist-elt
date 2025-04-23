@@ -1,0 +1,22 @@
+services:
+  airflow:
+    image: apache/airflow:2.8.0
+    restart: always
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/airflow/gcp/creds.json
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./dbt:/opt/airflow/dbt
+      - C:\Users\Moustapha\.dbt\dbt-key.json:/opt/airflow/gcp/creds.json:ro
+      - C:\Users\Moustapha\.dbt:/opt/airflow/gcp_keys
+
+    ports:
+      - "8081:8080"
+    command: standalone
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow

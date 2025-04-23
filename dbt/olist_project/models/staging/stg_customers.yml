@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned customer dimension view"
+    columns:
+      - name: customer_id
+        description: "Primary customer identifier from staging.customers"
+        tests:
+          - not_null
+      - name: customer_unique_id
+        description: "Cross‑session unique customer identifier"
+        tests:
+          - not_null
+      - name: zip_prefix_int
+        description: "Numeric ZIP code prefix for joins"
+        tests:
+          - not_null
+      - name: zip_prefix
+        description: "Zero‑padded (5‑digit) string ZIP code prefix for display"
+        tests:
+          - not_null
+      - name: customer_city
+        description: "City name, trimmed and converted to initcap"
+        tests:
+          - not_null
+      - name: customer_state
+        description: "State code, trimmed and uppercased"
+        tests:
+          - not_null
