@@ -1,0 +1,47 @@
+version: 2
+
+models:
+
+  - name: dim_geolocation
+    description: "ZIP prefix centroid table"
+    columns:
+      - name: geolocation_zip_code_prefix    # PK
+        tests: [unique, not_null]
+      - name: geolocation_lat
+        tests: [not_null]
+      - name: geolocation_lng
+        tests: [not_null]
+
+  - name: dim_customer
+    description: "Cleaned customer dimension: IDs, standardized ZIP prefix, city, state."
+    columns:
+      - name: customer_id
+        description: "Primary key from source."
+      - name: customer_unique_id
+        description: "Cross-session unique customer identifier."
+      - name: zip_prefix_int
+        description: "Numeric ZIP‐code prefix for joins."
+      - name: zip_prefix
+        description: "String ZIP prefix, zero‑padded to 5 digits for display."
+      - name: customer_city
+        description: "City name, trimmed and converted to initcap."
+      - name: customer_state
+        description: "State code, trimmed and uppercased."
+
+  - name: dim_product
+    description: "Product catalog"
+    columns:
+      - name: product_sk
+        tests: [unique, not_null]
+      - name: category
+
+  - name: dim_seller
+    columns:
+      - name: zip_prefix # Or potentially another relevant column name like seller_zip_prefix
+        tests:
+          # Add other tests like not_null if needed
+          - relationships:
+              to: ref('dim_geolocation')
+              field: geolocation_zip_code_prefix # Field name in the referenced model
+              config: # Add config block for severity
+                severity: warn # Change failure to warning

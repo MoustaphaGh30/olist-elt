@@ -1,0 +1,73 @@
+version: 2
+
+models:
+
+  - name: fact_orders
+    description: "One row per order"
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+
+      - name: customer_id               
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id
+
+      - name: order_status
+      - name: order_purchase_date_sk    
+        tests: [not_null]
+
+  - name: fact_order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: order_id
+
+      - name: product_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_sk
+
+      - name: seller_sk
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_seller')
+              field: seller_sk
+
+      - name: item_price
+        tests: [not_null]
+
+  - name: fact_payments
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: order_id
+
+      - name: payment_value
+        tests: [not_null]
+
+  - name: fact_reviews
+    columns:
+      - name: review_id
+        tests: [not_null]
+
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: order_id
+
+      - name: review_score
+        tests: [not_null]
