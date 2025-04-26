@@ -25,7 +25,7 @@ This project implements an **ELT pipeline** for the Brazilian E-Commerce (Olist)
   - Manages the automated ELT workflow, from ingestion (GCS) to transformation (dbt) and loading into BigQuery.
 
 - **Data Cleaning & Transformations:**  
-  - Folder: [`dbt/models`](dbt/models)  
+  - Folder: [`dbt/olist_project/models`](dbt/models)  
   - Contains SQL models for staging, cleaning, dimensional modeling, and building final analytical tables.
 
 ---
