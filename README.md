@@ -17,7 +17,7 @@ This project implements an **ELT pipeline** for the Brazilian E-Commerce (Olist)
 ## Project Structure
 
 - **Initial MySQL Approach:**  
-  - Notebook: [`file1.ipynb`](file1.ipynb)  
+  - Notebook: [`MSBA305-FinalProject.ipynb`](MSBA305-FinalProject.ipynb)  
   - Performed direct ingestion, exploration, and transformations inside a local MySQL database.
 
 - **Airflow DAGs:**  
